@@ -24,6 +24,11 @@
           - software-properties-common
         state: present
         update_cache: yes
+      retries: 5
+      delay: 10
+      register: apt_result
+      until: apt_result is succeeded
+
 
     - name: Download and install containerd binary
       shell: |
