@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: artisan-webapp
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: artisan-webapp
+    template:
+        metadata:
+            labels:
+                app: artisan-webapp
+        spec:
+            containers:
+                - name: artisan-webapp
+                  image: mahsa242/artisan_webapp:18d350ba-7aa9-49ea-b586-94102064ef22
+                  ports:
+                      - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: artisan-webapp-service
+spec:
+    selector:
+        app: artisan-webapp
+    type: NodePort
+    ports:
+        - protocol: TCP
+          port: 80
+          targetPort: 3000
+          nodePort: 30008
