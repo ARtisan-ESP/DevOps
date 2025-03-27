@@ -1,0 +1,15 @@
+global:
+  scrape_interval: 5s
+  external_labels:
+    monitor: "artisan-monitor"
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["http://prometheus_service:9090"]
+  - job_name: "grafana"
+    static_configs:
+      - targets: ["http://grafana_service:3000"]
+  - job_name: "backend"
+    static_configs:
+      - targets: ["http://artisan_backend_service:8000"]
