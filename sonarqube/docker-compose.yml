@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 services:
   sonarqube:
     image: sonarqube:latest
@@ -7,11 +8,29 @@ services:
       - SONAR_JDBC_URL=jdbc:postgresql://db:5432/sonar
       - SONAR_JDBC_USERNAME=sonar
       - SONAR_JDBC_PASSWORD=sonar
+=======
+networks:
+  sonarqube:
+
+services:
+  sonarqube_service:
+    container_name: sonarqube_service
+    image: sonarqube:latest
+    environment:
+      SONAR_JDBC_URL: ${SONAR_JDBC_URL}
+      SONAR_JDBC_USERNAME: ${SONAR_JDBC_USERNAME}
+      SONAR_JDBC_PASSWORD: ${SONAR_JDBC_PASSWORD}
+    networks:
+      - sonarqube
+    ports:
+      - "9000:9000"
+>>>>>>> ffc5819 (feat: add sonarqube)
     volumes:
       - sonarqube_data:/opt/sonarqube/data
       - sonarqube_logs:/opt/sonarqube/logs
       - sonarqube_extensions:/opt/sonarqube/extensions
     depends_on:
+<<<<<<< HEAD
       - db
 
   db:
@@ -32,9 +51,26 @@ services:
       - "5050:80"
     depends_on:
       - db
+=======
+      - sonarqube_database_service
+
+  sonarqube_database_service:
+    container_name: sonarqube_database_service
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgresql_data_db:/var/lib/postgresql/data
+>>>>>>> ffc5819 (feat: add sonarqube)
 
 volumes:
   sonarqube_data:
   sonarqube_logs:
   sonarqube_extensions:
+<<<<<<< HEAD
   postgresql_data:
+=======
+  postgresql_data_db:
+>>>>>>> ffc5819 (feat: add sonarqube)
