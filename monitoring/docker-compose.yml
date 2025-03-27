@@ -16,6 +16,9 @@ services:
       - monitoring
     volumes:
       - grafana_data:/var/lib/grafana
+      - ./conf/grafana/dashboards/dashboard.yml:/etc/grafana/provisioning/dashboards/main.yaml
+      - ./conf/grafana/dashboards:/var/lib/grafana/dashboards
+      - ./conf/grafana/datasources:/etc/grafana/provisioning/datasources
 
   prometheus:
     container_name: prometheus-service
