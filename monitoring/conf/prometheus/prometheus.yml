@@ -6,10 +6,10 @@ global:
 scrape_configs:
   - job_name: "prometheus"
     static_configs:
-      - targets: ["prometheus_service:9090"]
+      - targets: ["prometheus-service:9090"]
   - job_name: "grafana"
     static_configs:
-      - targets: ["grafana_service:3000"]
+      - targets: ["grafana-service:3000"]
   - job_name: "backend"
     static_configs:
-      - targets: ["artisan_backend_service:8000"]
+      - targets: ["artisan-backend-service:8000"]

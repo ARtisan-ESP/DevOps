@@ -5,7 +5,7 @@ networks:
 
 services:
   grafana:
-    container_name: grafana_service
+    container_name: grafana-service
     image: grafana/grafana-enterprise:latest
     environment:
       GF_SECURITY_ADMIN_USER: ${GF_SECURITY_ADMIN_USER}
@@ -18,7 +18,7 @@ services:
       - grafana_data:/var/lib/grafana
 
   prometheus:
-    container_name: prometheus_service
+    container_name: prometheus-service
     image: prom/prometheus:latest
     ports:
       - "9090:9090"
@@ -30,7 +30,7 @@ services:
 
   loki:
     image: grafana/loki:latest
-    container_name: loki_service
+    container_name: loki-service
     ports:
       - "3100:3100"
     networks:
@@ -41,7 +41,7 @@ services:
 
   promtail:
     image: grafana/promtail:latest
-    container_name: promtail_service
+    container_name: promtail-service
     networks:
       - monitoring
     volumes:
