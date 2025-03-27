@@ -1,0 +1,34 @@
+# Uncomment if running monitoring stack
+
+####################
+#### MONITORING ####
+####################
+
+# networks:
+#   monitoring:
+#     name: monitoring
+#     external: true
+
+# services:
+#   nexus_service:
+#     networks:
+#       - monitoring
+
+###################
+####  TRAEFIK  ####
+###################
+
+# networks:
+#   your_traefik_network:
+#     name: your_traefik_network
+#     external: true
+
+# services:
+#   nexus_service:
+#     labels:
+#       traefik.enable: "true"
+#       traefik.http.routers.your-traefik-service-name.rule: "Host(`your-traefik-service-name.dev.local`)"
+#       traefik.http.routers.your-traefik-service-name.entrypoints: "http"
+#       traefik.http.services.your-traefik-service-name.loadbalancer.server.port: "8000"
+#     networks:
+#       - traefik_proxy
