@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: artisan-backend
+  namespace: artisan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: artisan-backend
+  template:
+    metadata:
+      labels:
+        app: artisan-backend
+    spec:
+      containers:
+        - name: django
+          image: mahsa242/artisan-backend:v3
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: django-config
+            - secretRef:
+                name: django-secret
